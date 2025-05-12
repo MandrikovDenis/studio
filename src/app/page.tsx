@@ -1,26 +1,44 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+'use client';
 
-export default function Home() {
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email && password) {
+      router.push('/dashboard');
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center space-y-6">
-      <Card className="w-full max-w-md text-center shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Welcome to AuthFlow</CardTitle>
-          <CardDescription className="text-lg text-muted-foreground pt-2">
-            Experience seamless authentication and smooth navigation.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col items-center space-y-4">
-          <p>
-            This application demonstrates a clean authentication flow using modern web technologies.
-          </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-            <Link href="/auth">Get Started</Link>
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white p-8">
+      <h1 className="text-xl font-bold">Вход</h1>
+      <form onSubmit={handleLogin} className="flex flex-col gap-4 w-64">
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          className="border p-2 rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Пароль"
+          className="border p-2 rounded"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="bg-blue-600 text-white py-2 rounded">
+          Войти
+        </button>
+      </form>
+    </main>
   );
 }

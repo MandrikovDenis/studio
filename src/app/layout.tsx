@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans'; // Corrected import path
+import { GeistSans } from 'geist/font/sans'; 
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 
-const geistSans = GeistSans; // Removed instantiation as it's already the font object
-
+const geistSans = GeistSans; 
 export const metadata: Metadata = {
-  title: 'AuthFlow',
+  title: 'Test',
   description: 'Web application with authentication and smooth transitions.',
 };
 
@@ -21,8 +20,8 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body
         className={cn(
-          'h-full font-sans antialiased', // Use font-sans which maps to --font-geist-sans
-          geistSans.variable // Use the variable property directly
+          'h-full font-sans antialiased', 
+          geistSans.variable 
         )}
       >
         <div className="flex min-h-full flex-col">
